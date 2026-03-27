@@ -67,13 +67,10 @@ class MeasurementApplicationTests {
 
 		assertFalse(i1.equals("Some String"));
 	}
-
 	@Test
 	void testInchEquality_SameReference(){
 		MeasurementApplication.Inch i1 = new MeasurementApplication.Inch(18.0);
 
 		assertTrue(i1.equals(i1));
 	}
-
-
 }
