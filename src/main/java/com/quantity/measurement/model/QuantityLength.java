@@ -4,6 +4,8 @@ import com.quantity.measurement.enums.LengthUnit;
 
 public class QuantityLength {
 
+    private static final double EPSILON = 0.0001;
+
     private final double value;
     private final LengthUnit unit;
 
@@ -24,9 +26,9 @@ public class QuantityLength {
 
         QuantityLength other = (QuantityLength) obj;
 
-        double thisValue = this.unit.toBase(this.value);
-        double otherValue = other.unit.toBase(other.value);
+        double thisValue = this.unit.toFeet(this.value);
+        double otherValue = other.unit.toFeet(other.value);
 
-        return Double.compare(thisValue, otherValue) == 0;
+        return Math.abs(thisValue - otherValue) < EPSILON;
     }
 }
