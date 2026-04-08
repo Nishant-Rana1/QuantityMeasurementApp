@@ -24,6 +24,4 @@ public class MeasurementApplication {
 		QuantityLength quantityLength1 = new QuantityLength(value3, unit2);
 
 	}
-
-
 }
