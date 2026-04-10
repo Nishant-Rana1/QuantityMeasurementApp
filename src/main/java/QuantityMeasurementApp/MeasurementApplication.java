@@ -2,7 +2,6 @@ package QuantityMeasurementApp;
 
 import com.quantity.measurement.enums.LengthUnit;
 import com.quantity.measurement.model.QuantityLength;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
