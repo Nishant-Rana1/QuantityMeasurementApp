@@ -1,10 +1,10 @@
 package QuantityMeasurementApp;
 
-import com.quantity.measurement.enums.WeightUnit;
+import com.quantity.measurement.enumsImpl.WeightUnit;
 import com.quantity.measurement.model.Quantity;
 import com.quantity.measurement.model.QuantityWeight;
 import com.quantity.measurement.model.QuantityLength;
-import com.quantity.measurement.enums.LengthUnit;
+import com.quantity.measurement.enumsImpl.LengthUnit;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
