@@ -6,6 +6,7 @@ import com.quantity.measurement.enums.IMeasurable;
 import com.quantity.measurement.enumsImpl.LengthUnit;
 import com.quantity.measurement.enumsImpl.VolumeUnit;
 import com.quantity.measurement.enumsImpl.WeightUnit;
+import com.quantity.measurement.enumsImpl.TemperatureUnit;
 import com.quantity.measurement.exception.Exception;
 import com.quantity.measurement.model.Quantity;
 import com.quantity.measurement.repository.Repository;
@@ -28,7 +29,7 @@ public class ServiceImpl implements Service {
             case "LENGTH" -> LengthUnit.valueOf(unit.toUpperCase());
             case "WEIGHT" -> WeightUnit.valueOf(unit.toUpperCase());
             case "VOLUME" -> VolumeUnit.valueOf(unit.toUpperCase());
-            case "TEMPERATURE" -> com.quantity.measurement.enumsImpl.TemperatureUnit.valueOf(unit.toUpperCase());
+            case "TEMPERATURE" -> TemperatureUnit.valueOf(unit.toUpperCase());
             default -> throw new Exception("Invalid type");
         };
     }
