@@ -27,9 +27,7 @@ public class ServiceImpl implements Service {
         this.repository = repository2;
 
         logger.info("QuantityMeasurementService initialized");
-
     }
-
     private IMeasurable getUnit(String unit, String type) {
 
         String normalizedUnit = normalizeUnit(unit);
