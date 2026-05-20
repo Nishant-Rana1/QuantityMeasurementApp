@@ -36,14 +36,11 @@ public class DatabaseIntegrationTest {
         repository.deleteAll();
     }
 
-
-
     // 1
     @Test
     void testMavenBuild_Success() {
         assertTrue(true);
     }
-
 
     // 2
     @Test
@@ -54,7 +51,6 @@ public class DatabaseIntegrationTest {
         assertNotNull(Entity.class);
         assertNotNull(Repository.class);
     }
-
 
     // 3
     @Test
@@ -74,8 +70,7 @@ public class DatabaseIntegrationTest {
     void testConnectionPool_Initialization()
             throws Exception {
 
-        Connection connection =
-                ConnectionPool.getConnection();
+        Connection connection = ConnectionPool.getConnection();
 
         assertNotNull(connection);
 
@@ -91,7 +86,7 @@ public class DatabaseIntegrationTest {
         ConnectionPool.releaseConnection(connection);
     }
 
-    //7
+    // 7
     @Test
     void testConnectionPool_AllConnectionsExhausted() throws Exception {
 
@@ -117,7 +112,7 @@ public class DatabaseIntegrationTest {
         }
     }
 
-    //8
+    // 8
     @Test
     void testDatabaseRepository_EmptyTable() {
         repository.deleteAll();
@@ -141,7 +136,7 @@ public class DatabaseIntegrationTest {
 
         repository.save(entity);
 
-        assertEquals( 1, repository.getAllMeasurements().size());
+        assertEquals(1, repository.getAllMeasurements().size());
     }
 
     // 10
@@ -203,15 +198,14 @@ public class DatabaseIntegrationTest {
 
         repository.save(entity);
 
-        assertEquals( 1, repository.getTotalCount());
+        assertEquals(1, repository.getTotalCount());
     }
 
     // 13
     @Test
     void testDatabaseRepository_FindByOperationType() {
 
-        Entity entity =
-                new Entity();
+        Entity entity = new Entity();
 
         entity.setOperand1Value(1);
         entity.setOperand1Unit("KG");
@@ -224,8 +218,7 @@ public class DatabaseIntegrationTest {
 
         repository.save(entity);
 
-        List<Entity> result =
-                repository.getMeasurementsByOperation("ADD");
+        List<Entity> result = repository.getMeasurementsByOperation("ADD");
 
         assertEquals(1, result.size());
     }
@@ -234,8 +227,7 @@ public class DatabaseIntegrationTest {
     @Test
     void testDatabaseRepository_FindByMeasurementType() {
 
-        Entity entity =
-                new Entity();
+        Entity entity = new Entity();
 
         entity.setOperand1Value(1);
         entity.setOperand1Unit("CELSIUS");
@@ -248,10 +240,8 @@ public class DatabaseIntegrationTest {
 
         repository.save(entity);
 
-        List<Entity> result =
-                repository.getMeasurementsByType(
-                        "TEMPERATURE"
-                );
+        List<Entity> result = repository.getMeasurementsByType(
+                "TEMPERATURE");
 
         assertEquals(1, result.size());
     }
@@ -261,8 +251,7 @@ public class DatabaseIntegrationTest {
     void testConnectionPool_AvailableConnections() {
 
         assertTrue(
-                ConnectionPool.availableConnections() >= 0
-        );
+                ConnectionPool.availableConnections() >= 0);
     }
 
     // 16
@@ -270,8 +259,7 @@ public class DatabaseIntegrationTest {
     void testConnectionPool_TotalConnections() {
 
         assertTrue(
-                ConnectionPool.totalConnections() > 0
-        );
+                ConnectionPool.totalConnections() > 0);
     }
 
     // 17
@@ -280,8 +268,7 @@ public class DatabaseIntegrationTest {
 
         for (int i = 0; i < 5; i++) {
 
-            Entity entity =
-                    new Entity();
+            Entity entity = new Entity();
 
             entity.setOperand1Value(i);
             entity.setOperand1Unit("FEET");
@@ -302,10 +289,8 @@ public class DatabaseIntegrationTest {
     @Test
     void testDatabaseRepository_NonExistingOperationType() {
 
-        List<Entity> result =
-                repository.getMeasurementsByOperation(
-                        "INVALID"
-                );
+        List<Entity> result = repository.getMeasurementsByOperation(
+                "INVALID");
 
         assertTrue(result.isEmpty());
     }
@@ -314,10 +299,8 @@ public class DatabaseIntegrationTest {
     @Test
     void testDatabaseRepository_NonExistingMeasurementType() {
 
-        List<Entity> result =
-                repository.getMeasurementsByType(
-                        "INVALID"
-                );
+        List<Entity> result = repository.getMeasurementsByType(
+                "INVALID");
 
         assertTrue(result.isEmpty());
     }
@@ -327,11 +310,9 @@ public class DatabaseIntegrationTest {
     void testConnectionPool_MultipleConnections()
             throws Exception {
 
-        Connection c1 =
-                ConnectionPool.getConnection();
+        Connection c1 = ConnectionPool.getConnection();
 
-        Connection c2 =
-                ConnectionPool.getConnection();
+        Connection c2 = ConnectionPool.getConnection();
 
         assertNotNull(c1);
         assertNotNull(c2);
@@ -344,16 +325,14 @@ public class DatabaseIntegrationTest {
     @Test
     void testConnectionPool_ReleaseNullConnection() {
 
-        assertDoesNotThrow(() ->
-                ConnectionPool.releaseConnection(null));
+        assertDoesNotThrow(() -> ConnectionPool.releaseConnection(null));
     }
 
     // 22
     @Test
     void testDatabaseRepository_SaveNullEntity() {
 
-        assertThrows(Exception.class, () ->
-                repository.save(null));
+        assertThrows(Exception.class, () -> repository.save(null));
     }
 
     // 23
@@ -369,8 +348,7 @@ public class DatabaseIntegrationTest {
     @Test
     void testDatabaseRepository_CountAfterDelete() {
 
-        Entity entity =
-                new Entity();
+        Entity entity = new Entity();
 
         entity.setOperand1Value(10);
         entity.setOperand1Unit("FEET");
@@ -395,16 +373,14 @@ public class DatabaseIntegrationTest {
         repository.deleteAll();
 
         assertTrue(
-                repository.getAllMeasurements().isEmpty()
-        );
+                repository.getAllMeasurements().isEmpty());
     }
 
     // 26
     @Test
     void testDatabaseRepository_SaveDifferentMeasurementTypes() {
 
-        Entity entity1 =
-                new Entity();
+        Entity entity1 = new Entity();
 
         entity1.setOperand1Value(1);
         entity1.setOperand1Unit("FEET");
@@ -417,8 +393,7 @@ public class DatabaseIntegrationTest {
 
         repository.save(entity1);
 
-        Entity entity2 =
-                new Entity();
+        Entity entity2 = new Entity();
 
         entity2.setOperand1Value(1);
         entity2.setOperand1Unit("KG");
@@ -439,8 +414,7 @@ public class DatabaseIntegrationTest {
     void testConnectionPool_ConcurrentAccess()
             throws Exception {
 
-        ExecutorService executorService =
-                Executors.newFixedThreadPool(5);
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
 
         for (int i = 0; i < 5; i++) {
 
@@ -448,14 +422,12 @@ public class DatabaseIntegrationTest {
 
                 try {
 
-                    Connection connection =
-                            ConnectionPool.getConnection();
+                    Connection connection = ConnectionPool.getConnection();
 
                     Thread.sleep(100);
 
                     ConnectionPool.releaseConnection(
-                            connection
-                    );
+                            connection);
 
                 } catch (Exception e) {
 
@@ -469,17 +441,14 @@ public class DatabaseIntegrationTest {
         assertTrue(
                 executorService.awaitTermination(
                         5,
-                        TimeUnit.SECONDS
-                )
-        );
+                        TimeUnit.SECONDS));
     }
 
     // 28
     @Test
     void testDatabaseRepository_SaveAndRetrieveValues() {
 
-        Entity entity =
-                new Entity();
+        Entity entity = new Entity();
 
         entity.setOperand1Value(100);
         entity.setOperand1Unit("ML");
@@ -492,13 +461,11 @@ public class DatabaseIntegrationTest {
 
         repository.save(entity);
 
-        Entity saved =
-                repository.getAllMeasurements().get(0);
+        Entity saved = repository.getAllMeasurements().get(0);
 
         assertEquals(
                 200,
-                saved.getResultValue()
-        );
+                saved.getResultValue());
     }
 
     // 29
@@ -507,19 +474,15 @@ public class DatabaseIntegrationTest {
 
         assertNotNull(
                 ApplicationConfig.getProperty(
-                        "spring.datasource.url"
-                )
-        );
+                        "spring.datasource.url"));
     }
 
     // 30
     @Test
     void testApplicationConfig_IntegerProperty() {
 
-        int value =
-                ApplicationConfig.getIntProperty(
-                        "pool.maxSize"
-                );
+        int value = ApplicationConfig.getIntProperty(
+                "pool.maxSize");
 
         assertTrue(value > 0);
     }
@@ -535,8 +498,7 @@ public class DatabaseIntegrationTest {
     @Test
     void testEntityInstance_NotNull() {
 
-        Entity entity =
-                new Entity();
+        Entity entity = new Entity();
 
         assertNotNull(entity);
     }
@@ -545,8 +507,7 @@ public class DatabaseIntegrationTest {
     @Test
     void testDatabaseRepository_InsertAndCount() {
 
-        Entity entity =
-                new Entity();
+        Entity entity = new Entity();
 
         entity.setOperand1Value(50);
         entity.setOperand1Unit("GRAM");

@@ -13,7 +13,7 @@ import com.quantity.measurement.exception.Exception;
 import com.quantity.measurement.model.Quantity;
 import com.quantity.measurement.repository.Repository;
 import com.quantity.measurement.service.Service;
-import org.springframework.transaction.annotation.Transactional;
+import jakarta.transaction.Transactional;
 
 @org.springframework.stereotype.Service
 public class ServiceImpl implements Service {
@@ -52,10 +52,10 @@ public class ServiceImpl implements Service {
         }
 
         return switch (type.trim().toUpperCase()) {
-            case "LENGTH", "LENGTHUNIT" -> "LENGTH";
-            case "WEIGHT", "WEIGHTUNIT" -> "WEIGHT";
-            case "VOLUME", "VOLUMEUNIT" -> "VOLUME";
-            case "TEMPERATURE", "TEMPERATUREUNIT" -> "TEMPERATURE";
+            case "LENGTH", "LENGTH_UNIT", "LENGTHUNIT" -> "LENGTH";
+            case "WEIGHT", "WEIGHT_UNIT", "WEIGHTUNIT" -> "WEIGHT";
+            case "VOLUME", "VOLUME_UNIT", "VOLUMEUNIT" -> "VOLUME";
+            case "TEMPERATURE", "TEMPERATURE_UNIT", "TEMPERATUREUNIT" -> "TEMPERATURE";
             default -> throw new Exception("Invalid type");
         };
     }

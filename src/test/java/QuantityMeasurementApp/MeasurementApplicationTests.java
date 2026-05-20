@@ -16,15 +16,14 @@ class MeasurementApplicationTests {
 
     private static final double EPSILON = 1e-6;
 
-    //UC4
+    // UC4
 
     // 1
     @Test
     void testEquality_YardToYard_SameValue() {
         assertEquals(
                 new QuantityLength(1.0, LengthUnit.YARDS),
-                new QuantityLength(1.0, LengthUnit.YARDS)
-        );
+                new QuantityLength(1.0, LengthUnit.YARDS));
     }
 
     // 2
@@ -32,8 +31,7 @@ class MeasurementApplicationTests {
     void testEquality_YardToYard_DifferentValue() {
         assertNotEquals(
                 new QuantityLength(1.0, LengthUnit.YARDS),
-                new QuantityLength(2.0, LengthUnit.YARDS)
-        );
+                new QuantityLength(2.0, LengthUnit.YARDS));
     }
 
     // 3
@@ -41,8 +39,7 @@ class MeasurementApplicationTests {
     void testEquality_YardToFeet_EquivalentValue() {
         assertEquals(
                 new QuantityLength(1.0, LengthUnit.YARDS),
-                new QuantityLength(3.0, LengthUnit.FEET)
-        );
+                new QuantityLength(3.0, LengthUnit.FEET));
     }
 
     // 4
@@ -50,8 +47,7 @@ class MeasurementApplicationTests {
     void testEquality_FeetToYard_EquivalentValue() {
         assertEquals(
                 new QuantityLength(3.0, LengthUnit.FEET),
-                new QuantityLength(1.0, LengthUnit.YARDS)
-        );
+                new QuantityLength(1.0, LengthUnit.YARDS));
     }
 
     // 5
@@ -59,8 +55,7 @@ class MeasurementApplicationTests {
     void testEquality_YardToInches_EquivalentValue() {
         assertEquals(
                 new QuantityLength(1.0, LengthUnit.YARDS),
-                new QuantityLength(36.0, LengthUnit.INCH)
-        );
+                new QuantityLength(36.0, LengthUnit.INCH));
     }
 
     // 6
@@ -68,8 +63,7 @@ class MeasurementApplicationTests {
     void testEquality_InchesToYard_EquivalentValue() {
         assertEquals(
                 new QuantityLength(36.0, LengthUnit.INCH),
-                new QuantityLength(1.0, LengthUnit.YARDS)
-        );
+                new QuantityLength(1.0, LengthUnit.YARDS));
     }
 
     // 7
@@ -77,8 +71,7 @@ class MeasurementApplicationTests {
     void testEquality_YardToFeet_NonEquivalentValue() {
         assertNotEquals(
                 new QuantityLength(1.0, LengthUnit.YARDS),
-                new QuantityLength(2.0, LengthUnit.FEET)
-        );
+                new QuantityLength(2.0, LengthUnit.FEET));
     }
 
     // 8
@@ -86,8 +79,7 @@ class MeasurementApplicationTests {
     void testEquality_CentimetersToInches_EquivalentValue() {
         assertEquals(
                 new QuantityLength(1.0, LengthUnit.CENTIMETERS),
-                new QuantityLength(0.393701, LengthUnit.INCH)
-        );
+                new QuantityLength(0.393701, LengthUnit.INCH));
     }
 
     // 9
@@ -95,8 +87,7 @@ class MeasurementApplicationTests {
     void testEquality_CentimetersToFeet_NonEquivalentValue() {
         assertNotEquals(
                 new QuantityLength(1.0, LengthUnit.CENTIMETERS),
-                new QuantityLength(1.0, LengthUnit.FEET)
-        );
+                new QuantityLength(1.0, LengthUnit.FEET));
     }
 
     // 10 (Transitive property)
@@ -167,9 +158,9 @@ class MeasurementApplicationTests {
         assertEquals(yard, inch);
     }
 
-    //UC5
+    // UC5
 
-    // 1 (Feet → Inches)  will not convert properly
+    // 1 (Feet → Inches) will not convert properly
     @Test
     void testConversion_FeetToInches() {
         QuantityLength q = new QuantityLength(1.0, LengthUnit.FEET);
@@ -265,8 +256,7 @@ class MeasurementApplicationTests {
     // 11 (NaN / Infinite)
     @Test
     void testConversion_NaNOrInfinite_Throws() {
-        assertThrows(IllegalArgumentException.class, () ->
-                new QuantityLength(Double.NaN, LengthUnit.FEET));
+        assertThrows(IllegalArgumentException.class, () -> new QuantityLength(Double.NaN, LengthUnit.FEET));
     }
 
     // 12 (Precision — based on your wrong CM factor)
@@ -280,8 +270,8 @@ class MeasurementApplicationTests {
         assertEquals(expected, result, 1e-6);
     }
     // ===============================
-// UC6 TEST CASES (12)
-// ===============================
+    // UC6 TEST CASES (12)
+    // ===============================
 
     // Test Case 1 (Same unit: Feet + Feet)
     @Test
@@ -413,8 +403,8 @@ class MeasurementApplicationTests {
         assertEquals(new QuantityLength(0.003, LengthUnit.FEET), result);
     }
     // ===============================
-// UC7 TEST CASES (14)
-// ===============================
+    // UC7 TEST CASES (14)
+    // ===============================
 
     // Test Case 1 (Explicit target = FEET)
     @Test
@@ -424,8 +414,7 @@ class MeasurementApplicationTests {
 
         assertEquals(
                 new QuantityLength(2.0, LengthUnit.FEET),
-                q1.add(q2, LengthUnit.FEET)
-        );
+                q1.add(q2, LengthUnit.FEET));
     }
 
     // Test Case 2 (Explicit target = INCHES)
@@ -436,8 +425,7 @@ class MeasurementApplicationTests {
 
         assertEquals(
                 new QuantityLength(24.0, LengthUnit.INCH),
-                q1.add(q2, LengthUnit.INCH)
-        );
+                q1.add(q2, LengthUnit.INCH));
     }
 
     // Test Case 3 (Target different from both → YARDS)
@@ -470,8 +458,7 @@ class MeasurementApplicationTests {
 
         assertEquals(
                 new QuantityLength(3.0, LengthUnit.YARDS),
-                q1.add(q2, LengthUnit.YARDS)
-        );
+                q1.add(q2, LengthUnit.YARDS));
     }
 
     // Test Case 6 (Target = second operand)
@@ -482,8 +469,7 @@ class MeasurementApplicationTests {
 
         assertEquals(
                 new QuantityLength(9.0, LengthUnit.FEET),
-                q1.add(q2, LengthUnit.FEET)
-        );
+                q1.add(q2, LengthUnit.FEET));
     }
 
     // Test Case 7 (Commutativity)
@@ -517,8 +503,7 @@ class MeasurementApplicationTests {
 
         assertEquals(
                 new QuantityLength(36.0, LengthUnit.INCH),
-                q1.add(q2, LengthUnit.INCH)
-        );
+                q1.add(q2, LengthUnit.INCH));
     }
 
     // Test Case 10 (Null target)
@@ -527,9 +512,7 @@ class MeasurementApplicationTests {
         QuantityLength q1 = new QuantityLength(1.0, LengthUnit.FEET);
         QuantityLength q2 = new QuantityLength(1.0, LengthUnit.FEET);
 
-        assertThrows(NullPointerException.class, () ->
-                q1.add(q2, null)
-        );
+        assertThrows(NullPointerException.class, () -> q1.add(q2, null));
     }
 
     // Test Case 11 (Large → small scale)
@@ -540,8 +523,7 @@ class MeasurementApplicationTests {
 
         assertEquals(
                 new QuantityLength(18000.0, LengthUnit.INCH),
-                q1.add(q2, LengthUnit.INCH)
-        );
+                q1.add(q2, LengthUnit.INCH));
     }
 
     // Test Case 12 (Small → large scale)
@@ -578,7 +560,7 @@ class MeasurementApplicationTests {
         assertEquals(5.08, result.getValue(), 1e-6);
     }
 
-    //UC8
+    // UC8
     // ENUM CONSTANT TESTS
     // Test Case 1 (FEET constant)
     @Test
@@ -669,8 +651,7 @@ class MeasurementApplicationTests {
     void testQuantityLengthRefactored_Equality() {
         assertEquals(
                 new QuantityLength(1.0, LengthUnit.FEET),
-                new QuantityLength(12.0, LengthUnit.INCH)
-        );
+                new QuantityLength(12.0, LengthUnit.INCH));
     }
 
     // Test Case 14 (Convert: 1 ft → 12 in)
@@ -689,8 +670,7 @@ class MeasurementApplicationTests {
 
         assertEquals(
                 new QuantityLength(2.0, LengthUnit.FEET),
-                q1.add(q2)
-        );
+                q1.add(q2));
     }
 
     // Test Case 16 (Add with target: → Yards)
@@ -711,17 +691,13 @@ class MeasurementApplicationTests {
     // Test Case 17 (Null unit)
     @Test
     void testQuantityLengthRefactored_NullUnit() {
-        assertThrows(NullPointerException.class, () ->
-                new QuantityLength(1.0, null)
-        );
+        assertThrows(NullPointerException.class, () -> new QuantityLength(1.0, null));
     }
 
     // Test Case 18 (Invalid value NaN)
     @Test
     void testQuantityLengthRefactored_InvalidValue() {
-        assertThrows(IllegalArgumentException.class, () ->
-                new QuantityLength(Double.NaN, LengthUnit.FEET)
-        );
+        assertThrows(IllegalArgumentException.class, () -> new QuantityLength(Double.NaN, LengthUnit.FEET));
     }
 
     // ===============================
@@ -759,8 +735,7 @@ class MeasurementApplicationTests {
     void testBackwardCompatibility_UC4() {
         assertEquals(
                 new QuantityLength(3.0, LengthUnit.FEET),
-                new QuantityLength(1.0, LengthUnit.YARDS)
-        );
+                new QuantityLength(1.0, LengthUnit.YARDS));
     }
 
     // Test Case 22 (UC5 Conversion still works)
@@ -805,15 +780,14 @@ class MeasurementApplicationTests {
     // EQUALITY TESTS
     // ===============================
 
-    //UC9=================
+    // UC9=================
 
     // Test Case 1 (Same unit equality)
     @Test
     void testEquality_KilogramToKilogram_SameValue() {
         assertEquals(
                 new QuantityWeight(1.0, WeightUnit.KILOGRAM),
-                new QuantityWeight(1.0, WeightUnit.KILOGRAM)
-        );
+                new QuantityWeight(1.0, WeightUnit.KILOGRAM));
     }
 
     // Test Case 2 (Same unit different value)w
@@ -821,8 +795,7 @@ class MeasurementApplicationTests {
     void testEquality_KilogramToKilogram_DifferentValue() {
         assertNotEquals(
                 new QuantityWeight(1.0, WeightUnit.KILOGRAM),
-                new QuantityWeight(2.0, WeightUnit.KILOGRAM)
-        );
+                new QuantityWeight(2.0, WeightUnit.KILOGRAM));
     }
 
     // Test Case 3 (kg → g)
@@ -830,8 +803,7 @@ class MeasurementApplicationTests {
     void testEquality_KilogramToGram_EquivalentValue() {
         assertEquals(
                 new QuantityWeight(1.0, WeightUnit.KILOGRAM),
-                new QuantityWeight(1000.0, WeightUnit.GRAM)
-        );
+                new QuantityWeight(1000.0, WeightUnit.GRAM));
     }
 
     // Test Case 4 (g → kg)
@@ -839,8 +811,7 @@ class MeasurementApplicationTests {
     void testEquality_GramToKilogram_EquivalentValue() {
         assertEquals(
                 new QuantityWeight(1000.0, WeightUnit.GRAM),
-                new QuantityWeight(1.0, WeightUnit.KILOGRAM)
-        );
+                new QuantityWeight(1.0, WeightUnit.KILOGRAM));
     }
 
     // Test Case 5 (Category mismatch)
@@ -848,8 +819,7 @@ class MeasurementApplicationTests {
     void testEquality_WeightVsLength_Incompatible() {
         assertNotEquals(
                 new QuantityWeight(1.0, WeightUnit.KILOGRAM),
-                new QuantityLength(1.0, LengthUnit.FEET)
-        );
+                new QuantityLength(1.0, LengthUnit.FEET));
     }
 
     // Test Case 6 (Null comparison)
@@ -869,9 +839,7 @@ class MeasurementApplicationTests {
     // Test Case 8 (Null unit)
     @Test
     void testEquality_NullUnit() {
-        assertThrows(NullPointerException.class, () ->
-                new QuantityWeight(1.0, null)
-        );
+        assertThrows(NullPointerException.class, () -> new QuantityWeight(1.0, null));
     }
 
     // Test Case 9 (Transitive property)
@@ -892,8 +860,7 @@ class MeasurementApplicationTests {
     void testEquality_ZeroValue() {
         assertEquals(
                 new QuantityWeight(0.0, WeightUnit.KILOGRAM),
-                new QuantityWeight(0.0, WeightUnit.GRAM)
-        );
+                new QuantityWeight(0.0, WeightUnit.GRAM));
     }
 
     // Test Case 11 (Negative value)
@@ -901,8 +868,7 @@ class MeasurementApplicationTests {
     void testEquality_NegativeWeight() {
         assertEquals(
                 new QuantityWeight(-1.0, WeightUnit.KILOGRAM),
-                new QuantityWeight(-1000.0, WeightUnit.GRAM)
-        );
+                new QuantityWeight(-1000.0, WeightUnit.GRAM));
     }
 
     // Test Case 12 (Large value)
@@ -910,8 +876,7 @@ class MeasurementApplicationTests {
     void testEquality_LargeWeightValue() {
         assertEquals(
                 new QuantityWeight(1000.0, WeightUnit.KILOGRAM),
-                new QuantityWeight(1000000.0, WeightUnit.GRAM)
-        );
+                new QuantityWeight(1000000.0, WeightUnit.GRAM));
     }
 
     // Test Case 13 (Small value)
@@ -919,8 +884,7 @@ class MeasurementApplicationTests {
     void testEquality_SmallWeightValue() {
         assertEquals(
                 new QuantityWeight(0.001, WeightUnit.KILOGRAM),
-                new QuantityWeight(1.0, WeightUnit.GRAM)
-        );
+                new QuantityWeight(1.0, WeightUnit.GRAM));
     }
 
     // ===============================
@@ -984,8 +948,7 @@ class MeasurementApplicationTests {
         assertEquals(
                 new QuantityWeight(3.0, WeightUnit.KILOGRAM),
                 new QuantityWeight(1.0, WeightUnit.KILOGRAM)
-                        .add(new QuantityWeight(2.0, WeightUnit.KILOGRAM))
-        );
+                        .add(new QuantityWeight(2.0, WeightUnit.KILOGRAM)));
     }
 
     // Test Case 21 (Cross-unit kg + g)
@@ -994,8 +957,7 @@ class MeasurementApplicationTests {
         assertEquals(
                 new QuantityWeight(2.0, WeightUnit.KILOGRAM),
                 new QuantityWeight(1.0, WeightUnit.KILOGRAM)
-                        .add(new QuantityWeight(1000.0, WeightUnit.GRAM))
-        );
+                        .add(new QuantityWeight(1000.0, WeightUnit.GRAM)));
     }
 
     // Test Case 22 (lb + kg → lb)
@@ -1031,8 +993,7 @@ class MeasurementApplicationTests {
         assertEquals(
                 new QuantityWeight(5.0, WeightUnit.KILOGRAM),
                 new QuantityWeight(5.0, WeightUnit.KILOGRAM)
-                        .add(new QuantityWeight(0.0, WeightUnit.GRAM))
-        );
+                        .add(new QuantityWeight(0.0, WeightUnit.GRAM)));
     }
 
     // Test Case 26 (Negative addition)
@@ -1041,8 +1002,7 @@ class MeasurementApplicationTests {
         assertEquals(
                 new QuantityWeight(3.0, WeightUnit.KILOGRAM),
                 new QuantityWeight(5.0, WeightUnit.KILOGRAM)
-                        .add(new QuantityWeight(-2000.0, WeightUnit.GRAM))
-        );
+                        .add(new QuantityWeight(-2000.0, WeightUnit.GRAM)));
     }
 
     // Test Case 27 (Large values)
@@ -1051,12 +1011,11 @@ class MeasurementApplicationTests {
         assertEquals(
                 new QuantityWeight(2e6, WeightUnit.KILOGRAM),
                 new QuantityWeight(1e6, WeightUnit.KILOGRAM)
-                        .add(new QuantityWeight(1e6, WeightUnit.KILOGRAM))
-        );
+                        .add(new QuantityWeight(1e6, WeightUnit.KILOGRAM)));
     }
-//    // ===============================
-// IMeasurable Interface Tests
-// ===============================
+    // // ===============================
+    // IMeasurable Interface Tests
+    // ===============================
 
     // Test Case 1 (LengthUnit implements all interface methods)
     @Test
@@ -1079,9 +1038,9 @@ class MeasurementApplicationTests {
         assertNotNull(WeightUnit.KILOGRAM.name());
     }
 
-// ===============================
-// GENERIC QUANTITY - LENGTH
-// ===============================
+    // ===============================
+    // GENERIC QUANTITY - LENGTH
+    // ===============================
 
     // Test Case 4 (Quantity<LengthUnit> equality)
     @Test
@@ -1143,9 +1102,9 @@ class MeasurementApplicationTests {
         assertEquals(2.0, result.getValue(), EPSILON);
     }
 
-// ===============================
-// CROSS CATEGORY TESTS
-// ===============================
+    // ===============================
+    // CROSS CATEGORY TESTS
+    // ===============================
 
     // Test Case 10 (Length vs Weight equals() returns false)
     @Test
@@ -1162,9 +1121,9 @@ class MeasurementApplicationTests {
         assertTrue(true); // Compile-time generic protection
     }
 
-// ===============================
-// CONSTRUCTOR VALIDATION
-// ===============================
+    // ===============================
+    // CONSTRUCTOR VALIDATION
+    // ===============================
 
     // Test Case 12 (Null unit in constructor rejected)
     @Test
@@ -1180,9 +1139,9 @@ class MeasurementApplicationTests {
                 () -> new Quantity<>(Double.NaN, WeightUnit.KILOGRAM));
     }
 
-// ===============================
-// BULK TESTS
-// ===============================
+    // ===============================
+    // BULK TESTS
+    // ===============================
 
     // Test Case 14 (All unit pairs; all categories)
     @Test
@@ -1207,9 +1166,9 @@ class MeasurementApplicationTests {
         assertEquals(2.0, w1.add(w2, WeightUnit.KILOGRAM).getValue(), EPSILON);
     }
 
-// ===============================
-// BACKWARD COMPATIBILITY
-// ===============================
+    // ===============================
+    // BACKWARD COMPATIBILITY
+    // ===============================
 
     // Test Case 16 (All UC1–UC9 tests unchanged)
     @Test
@@ -1220,9 +1179,9 @@ class MeasurementApplicationTests {
         assertTrue(q1.equals(q2));
     }
 
-// ===============================
-// SIMPLIFIED GENERIC DEMO
-// ===============================
+    // ===============================
+    // SIMPLIFIED GENERIC DEMO
+    // ===============================
 
     // Test Case 17 (Single generic equality demo handles both)
     @Test
@@ -1264,9 +1223,9 @@ class MeasurementApplicationTests {
                 EPSILON);
     }
 
-// ===============================
-// ADVANCED GENERIC TESTS
-// ===============================
+    // ===============================
+    // ADVANCED GENERIC TESTS
+    // ===============================
 
     // Test Case 20 (Quantity<?> method accepts all categories)
     @Test
@@ -1329,11 +1288,9 @@ class MeasurementApplicationTests {
     // Test Case 27 (No setters; returns new objects)
     @Test
     void testImmutability_GenericQuantity() {
-        Quantity<WeightUnit> original =
-                new Quantity<>(1.0, WeightUnit.KILOGRAM);
+        Quantity<WeightUnit> original = new Quantity<>(1.0, WeightUnit.KILOGRAM);
 
-        Quantity<WeightUnit> converted =
-                original.toConvert(WeightUnit.GRAM);
+        Quantity<WeightUnit> converted = original.toConvert(WeightUnit.GRAM);
 
         assertNotSame(original, converted);
     }
@@ -1680,73 +1637,84 @@ class MeasurementApplicationTests {
     // ===============================
     // UC12 TEST CASES
     // ===============================
-    // Test Case 1 (Subtraction  Same Unit  Feet Minus Feet)
+    // Test Case 1 (Subtraction Same Unit Feet Minus Feet)
     @Test
     void testSubtraction_SameUnit_FeetMinusFeet() {
-        assertEquals(new Quantity<>(5.0, LengthUnit.FEET), new Quantity<>(10.0, LengthUnit.FEET).subtract(new Quantity<>(5.0, LengthUnit.FEET), LengthUnit.FEET));
+        assertEquals(new Quantity<>(5.0, LengthUnit.FEET),
+                new Quantity<>(10.0, LengthUnit.FEET).subtract(new Quantity<>(5.0, LengthUnit.FEET), LengthUnit.FEET));
     }
 
-    // Test Case 2 (Subtraction  Same Unit  Litre Minus Litre)
+    // Test Case 2 (Subtraction Same Unit Litre Minus Litre)
     @Test
     void testSubtraction_SameUnit_LitreMinusLitre() {
-        assertEquals(new Quantity<>(7.0, VolumeUnit.LITRE), new Quantity<>(10.0, VolumeUnit.LITRE).subtract(new Quantity<>(3.0, VolumeUnit.LITRE), VolumeUnit.LITRE));
+        assertEquals(new Quantity<>(7.0, VolumeUnit.LITRE), new Quantity<>(10.0, VolumeUnit.LITRE)
+                .subtract(new Quantity<>(3.0, VolumeUnit.LITRE), VolumeUnit.LITRE));
     }
 
-    // Test Case 3 (Subtraction  Cross Unit  Feet Minus Inches)
+    // Test Case 3 (Subtraction Cross Unit Feet Minus Inches)
     @Test
     void testSubtraction_CrossUnit_FeetMinusInches() {
-        assertEquals(new Quantity<>(9.5, LengthUnit.FEET), new Quantity<>(10.0, LengthUnit.FEET).subtract(new Quantity<>(6.0, LengthUnit.INCH), LengthUnit.FEET));
+        assertEquals(new Quantity<>(9.5, LengthUnit.FEET),
+                new Quantity<>(10.0, LengthUnit.FEET).subtract(new Quantity<>(6.0, LengthUnit.INCH), LengthUnit.FEET));
     }
 
-    // Test Case 4 (Subtraction  Cross Unit  Inches Minus Feet)
+    // Test Case 4 (Subtraction Cross Unit Inches Minus Feet)
     @Test
     void testSubtraction_CrossUnit_InchesMinusFeet() {
-        assertEquals(new Quantity<>(60.0, LengthUnit.INCH), new Quantity<>(120.0, LengthUnit.INCH).subtract(new Quantity<>(5.0, LengthUnit.FEET), LengthUnit.INCH));
+        assertEquals(new Quantity<>(60.0, LengthUnit.INCH),
+                new Quantity<>(120.0, LengthUnit.INCH).subtract(new Quantity<>(5.0, LengthUnit.FEET), LengthUnit.INCH));
     }
 
-    // Test Case 5 (Subtraction  Explicit Target Unit  Feet)
+    // Test Case 5 (Subtraction Explicit Target Unit Feet)
     @Test
     void testSubtraction_ExplicitTargetUnit_Feet() {
-        assertEquals(new Quantity<>(9.5, LengthUnit.FEET), new Quantity<>(10.0, LengthUnit.FEET).subtract(new Quantity<>(6.0, LengthUnit.INCH), LengthUnit.FEET));
+        assertEquals(new Quantity<>(9.5, LengthUnit.FEET),
+                new Quantity<>(10.0, LengthUnit.FEET).subtract(new Quantity<>(6.0, LengthUnit.INCH), LengthUnit.FEET));
     }
 
-    // Test Case 6 (Subtraction  Explicit Target Unit  Inches)
+    // Test Case 6 (Subtraction Explicit Target Unit Inches)
     @Test
     void testSubtraction_ExplicitTargetUnit_Inches() {
-        assertEquals(new Quantity<>(114.0, LengthUnit.INCH), new Quantity<>(10.0, LengthUnit.FEET).subtract(new Quantity<>(6.0, LengthUnit.INCH), LengthUnit.INCH));
+        assertEquals(new Quantity<>(114.0, LengthUnit.INCH),
+                new Quantity<>(10.0, LengthUnit.FEET).subtract(new Quantity<>(6.0, LengthUnit.INCH), LengthUnit.INCH));
     }
 
-    // Test Case 7 (Subtraction  Explicit Target Unit  Millilitre)
+    // Test Case 7 (Subtraction Explicit Target Unit Millilitre)
     @Test
     void testSubtraction_ExplicitTargetUnit_Millilitre() {
-        assertEquals(new Quantity<>(3000.0, VolumeUnit.MILLILITRE), new Quantity<>(5.0, VolumeUnit.LITRE).subtract(new Quantity<>(2.0, VolumeUnit.LITRE), VolumeUnit.MILLILITRE));
+        assertEquals(new Quantity<>(3000.0, VolumeUnit.MILLILITRE), new Quantity<>(5.0, VolumeUnit.LITRE)
+                .subtract(new Quantity<>(2.0, VolumeUnit.LITRE), VolumeUnit.MILLILITRE));
     }
 
-    // Test Case 8 (Subtraction  Resulting In Negative)
+    // Test Case 8 (Subtraction Resulting In Negative)
     @Test
     void testSubtraction_ResultingInNegative() {
-        assertEquals(new Quantity<>(-5.0, LengthUnit.FEET), new Quantity<>(5.0, LengthUnit.FEET).subtract(new Quantity<>(10.0, LengthUnit.FEET), LengthUnit.FEET));
+        assertEquals(new Quantity<>(-5.0, LengthUnit.FEET),
+                new Quantity<>(5.0, LengthUnit.FEET).subtract(new Quantity<>(10.0, LengthUnit.FEET), LengthUnit.FEET));
     }
 
-    // Test Case 9 (Subtraction  Resulting In Zero)
+    // Test Case 9 (Subtraction Resulting In Zero)
     @Test
     void testSubtraction_ResultingInZero() {
-        assertEquals(new Quantity<>(0.0, LengthUnit.FEET), new Quantity<>(10.0, LengthUnit.FEET).subtract(new Quantity<>(120.0, LengthUnit.INCH), LengthUnit.FEET));
+        assertEquals(new Quantity<>(0.0, LengthUnit.FEET), new Quantity<>(10.0, LengthUnit.FEET)
+                .subtract(new Quantity<>(120.0, LengthUnit.INCH), LengthUnit.FEET));
     }
 
-    // Test Case 10 (Subtraction  With Zero Operand)
+    // Test Case 10 (Subtraction With Zero Operand)
     @Test
     void testSubtraction_WithZeroOperand() {
-        assertEquals(new Quantity<>(5.0, LengthUnit.FEET), new Quantity<>(5.0, LengthUnit.FEET).subtract(new Quantity<>(0.0, LengthUnit.INCH), LengthUnit.FEET));
+        assertEquals(new Quantity<>(5.0, LengthUnit.FEET),
+                new Quantity<>(5.0, LengthUnit.FEET).subtract(new Quantity<>(0.0, LengthUnit.INCH), LengthUnit.FEET));
     }
 
-    // Test Case 11 (Subtraction  With Negative Values)
+    // Test Case 11 (Subtraction With Negative Values)
     @Test
     void testSubtraction_WithNegativeValues() {
-        assertEquals(new Quantity<>(7.0, LengthUnit.FEET), new Quantity<>(5.0, LengthUnit.FEET).subtract(new Quantity<>(-2.0, LengthUnit.FEET), LengthUnit.FEET));
+        assertEquals(new Quantity<>(7.0, LengthUnit.FEET),
+                new Quantity<>(5.0, LengthUnit.FEET).subtract(new Quantity<>(-2.0, LengthUnit.FEET), LengthUnit.FEET));
     }
 
-    // Test Case 12 (Subtraction  Non Commutative)
+    // Test Case 12 (Subtraction Non Commutative)
     @Test
     void testSubtraction_NonCommutative() {
         Quantity<LengthUnit> a = new Quantity<>(5.0, LengthUnit.FEET);
@@ -1754,48 +1722,55 @@ class MeasurementApplicationTests {
         assertNotEquals(a.subtract(b, LengthUnit.FEET), b.subtract(a, LengthUnit.FEET));
     }
 
-    // Test Case 13 (Subtraction  With Large Values)
+    // Test Case 13 (Subtraction With Large Values)
     @Test
     void testSubtraction_WithLargeValues() {
-        assertEquals(new Quantity<>(5e5, WeightUnit.KILOGRAM), new Quantity<>(1e6, WeightUnit.KILOGRAM).subtract(new Quantity<>(5e5, WeightUnit.KILOGRAM), WeightUnit.KILOGRAM));
+        assertEquals(new Quantity<>(5e5, WeightUnit.KILOGRAM), new Quantity<>(1e6, WeightUnit.KILOGRAM)
+                .subtract(new Quantity<>(5e5, WeightUnit.KILOGRAM), WeightUnit.KILOGRAM));
     }
 
-    // Test Case 14 (Subtraction  With Small Values)
+    // Test Case 14 (Subtraction With Small Values)
     @Test
     void testSubtraction_WithSmallValues() {
-        assertEquals(new Quantity<>(0.0005, LengthUnit.FEET), new Quantity<>(0.001, LengthUnit.FEET).subtract(new Quantity<>(0.0005, LengthUnit.FEET), LengthUnit.FEET));
+        assertEquals(new Quantity<>(0.0005, LengthUnit.FEET), new Quantity<>(0.001, LengthUnit.FEET)
+                .subtract(new Quantity<>(0.0005, LengthUnit.FEET), LengthUnit.FEET));
     }
 
-    // Test Case 15 (Subtraction  Null Operand)
+    // Test Case 15 (Subtraction Null Operand)
     @Test
     void testSubtraction_NullOperand() {
-        assertThrows(NullPointerException.class, () -> new Quantity<>(10.0, LengthUnit.FEET).subtract(null, LengthUnit.FEET));
+        assertThrows(NullPointerException.class,
+                () -> new Quantity<>(10.0, LengthUnit.FEET).subtract(null, LengthUnit.FEET));
     }
 
-    // Test Case 16 (Subtraction  Null Target Unit)
+    // Test Case 16 (Subtraction Null Target Unit)
     @Test
     void testSubtraction_NullTargetUnit() {
-        assertThrows(NullPointerException.class, () -> new Quantity<>(10.0, LengthUnit.FEET).subtract(new Quantity<>(5.0, LengthUnit.FEET), null));
+        assertThrows(NullPointerException.class,
+                () -> new Quantity<>(10.0, LengthUnit.FEET).subtract(new Quantity<>(5.0, LengthUnit.FEET), null));
     }
 
-    // Test Case 17 (Subtraction  Cross Category)
+    // Test Case 17 (Subtraction Cross Category)
     @Test
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     void testSubtraction_CrossCategory() {
         Quantity feet = new Quantity<>(10.0, LengthUnit.FEET);
         Quantity kg = new Quantity<>(5.0, WeightUnit.KILOGRAM);
         assertThrows(IllegalArgumentException.class, () -> feet.subtract(kg, LengthUnit.FEET));
     }
 
-    // Test Case 18 (Subtraction  All Measurement Categories)
+    // Test Case 18 (Subtraction All Measurement Categories)
     @Test
     void testSubtraction_AllMeasurementCategories() {
-        assertNotNull(new Quantity<>(10.0, LengthUnit.FEET).subtract(new Quantity<>(5.0, LengthUnit.FEET), LengthUnit.FEET));
-        assertNotNull(new Quantity<>(10.0, WeightUnit.KILOGRAM).subtract(new Quantity<>(5.0, WeightUnit.KILOGRAM), WeightUnit.KILOGRAM));
-        assertNotNull(new Quantity<>(10.0, VolumeUnit.LITRE).subtract(new Quantity<>(5.0, VolumeUnit.LITRE), VolumeUnit.LITRE));
+        assertNotNull(
+                new Quantity<>(10.0, LengthUnit.FEET).subtract(new Quantity<>(5.0, LengthUnit.FEET), LengthUnit.FEET));
+        assertNotNull(new Quantity<>(10.0, WeightUnit.KILOGRAM).subtract(new Quantity<>(5.0, WeightUnit.KILOGRAM),
+                WeightUnit.KILOGRAM));
+        assertNotNull(new Quantity<>(10.0, VolumeUnit.LITRE).subtract(new Quantity<>(5.0, VolumeUnit.LITRE),
+                VolumeUnit.LITRE));
     }
 
-    // Test Case 19 (Subtraction  Chained Operations)
+    // Test Case 19 (Subtraction Chained Operations)
     @Test
     void testSubtraction_ChainedOperations() {
         Quantity<LengthUnit> a = new Quantity<>(10.0, LengthUnit.FEET);
@@ -1804,49 +1779,51 @@ class MeasurementApplicationTests {
         assertEquals(new Quantity<>(7.0, LengthUnit.FEET), a.subtract(b, LengthUnit.FEET).subtract(c, LengthUnit.FEET));
     }
 
-    // Test Case 20 (Division  Same Unit  Feet Divided By Feet)
+    // Test Case 20 (Division Same Unit Feet Divided By Feet)
     @Test
     void testDivision_SameUnit_FeetDividedByFeet() {
         assertEquals(5.0, new Quantity<>(10.0, LengthUnit.FEET).divide(new Quantity<>(2.0, LengthUnit.FEET)), EPSILON);
     }
 
-    // Test Case 21 (Division  Same Unit  Litre Divided By Litre)
+    // Test Case 21 (Division Same Unit Litre Divided By Litre)
     @Test
     void testDivision_SameUnit_LitreDividedByLitre() {
-        assertEquals(2.0, new Quantity<>(10.0, VolumeUnit.LITRE).divide(new Quantity<>(5.0, VolumeUnit.LITRE)), EPSILON);
+        assertEquals(2.0, new Quantity<>(10.0, VolumeUnit.LITRE).divide(new Quantity<>(5.0, VolumeUnit.LITRE)),
+                EPSILON);
     }
 
-    // Test Case 22 (Division  Cross Unit  Feet Divided By Inches)
+    // Test Case 22 (Division Cross Unit Feet Divided By Inches)
     @Test
     void testDivision_CrossUnit_FeetDividedByInches() {
         assertEquals(1.0, new Quantity<>(24.0, LengthUnit.INCH).divide(new Quantity<>(2.0, LengthUnit.FEET)), EPSILON);
     }
 
-    // Test Case 23 (Division  Cross Unit  Kilogram Divided By Gram)
+    // Test Case 23 (Division Cross Unit Kilogram Divided By Gram)
     @Test
     void testDivision_CrossUnit_KilogramDividedByGram() {
-        assertEquals(1.0, new Quantity<>(2.0, WeightUnit.KILOGRAM).divide(new Quantity<>(2000.0, WeightUnit.GRAM)), EPSILON);
+        assertEquals(1.0, new Quantity<>(2.0, WeightUnit.KILOGRAM).divide(new Quantity<>(2000.0, WeightUnit.GRAM)),
+                EPSILON);
     }
 
-    // Test Case 24 (Division  Ratio Greater Than One)
+    // Test Case 24 (Division Ratio Greater Than One)
     @Test
     void testDivision_RatioGreaterThanOne() {
         assertEquals(5.0, new Quantity<>(10.0, LengthUnit.FEET).divide(new Quantity<>(2.0, LengthUnit.FEET)), EPSILON);
     }
 
-    // Test Case 25 (Division  Ratio Less Than One)
+    // Test Case 25 (Division Ratio Less Than One)
     @Test
     void testDivision_RatioLessThanOne() {
         assertEquals(0.5, new Quantity<>(5.0, LengthUnit.FEET).divide(new Quantity<>(10.0, LengthUnit.FEET)), EPSILON);
     }
 
-    // Test Case 26 (Division  Ratio Equal To One)
+    // Test Case 26 (Division Ratio Equal To One)
     @Test
     void testDivision_RatioEqualToOne() {
         assertEquals(1.0, new Quantity<>(10.0, LengthUnit.FEET).divide(new Quantity<>(10.0, LengthUnit.FEET)), EPSILON);
     }
 
-    // Test Case 27 (Division  Non Commutative)
+    // Test Case 27 (Division Non Commutative)
     @Test
     void testDivision_NonCommutative() {
         Quantity<LengthUnit> a = new Quantity<>(10.0, LengthUnit.FEET);
@@ -1854,40 +1831,43 @@ class MeasurementApplicationTests {
         assertNotEquals(a.divide(b), b.divide(a), EPSILON);
     }
 
-    // Test Case 28 (Division  By Zero)
+    // Test Case 28 (Division By Zero)
     @Test
     void testDivision_ByZero() {
-        assertThrows(ArithmeticException.class, () -> new Quantity<>(10.0, LengthUnit.FEET).divide(new Quantity<>(0.0, LengthUnit.FEET)));
+        assertThrows(ArithmeticException.class,
+                () -> new Quantity<>(10.0, LengthUnit.FEET).divide(new Quantity<>(0.0, LengthUnit.FEET)));
     }
 
-    // Test Case 29 (Division  With Large Ratio)
+    // Test Case 29 (Division With Large Ratio)
     @Test
     void testDivision_WithLargeRatio() {
-        assertEquals(1000000.0, new Quantity<>(1e6, WeightUnit.KILOGRAM).divide(new Quantity<>(1.0, WeightUnit.KILOGRAM)), EPSILON);
+        assertEquals(1000000.0,
+                new Quantity<>(1e6, WeightUnit.KILOGRAM).divide(new Quantity<>(1.0, WeightUnit.KILOGRAM)), EPSILON);
     }
 
-    // Test Case 30 (Division  With Small Ratio)
+    // Test Case 30 (Division With Small Ratio)
     @Test
     void testDivision_WithSmallRatio() {
-        assertEquals(1e-6, new Quantity<>(1.0, WeightUnit.KILOGRAM).divide(new Quantity<>(1e6, WeightUnit.KILOGRAM)), EPSILON);
+        assertEquals(1e-6, new Quantity<>(1.0, WeightUnit.KILOGRAM).divide(new Quantity<>(1e6, WeightUnit.KILOGRAM)),
+                EPSILON);
     }
 
-    // Test Case 31 (Division  Null Operand)
+    // Test Case 31 (Division Null Operand)
     @Test
     void testDivision_NullOperand() {
         assertThrows(NullPointerException.class, () -> new Quantity<>(10.0, LengthUnit.FEET).divide(null));
     }
 
-    // Test Case 32 (Division  Cross Category)
+    // Test Case 32 (Division Cross Category)
     @Test
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     void testDivision_CrossCategory() {
         Quantity feet = new Quantity<>(10.0, LengthUnit.FEET);
         Quantity kg = new Quantity<>(5.0, WeightUnit.KILOGRAM);
         assertThrows(IllegalArgumentException.class, () -> feet.divide(kg));
     }
 
-    // Test Case 33 (Division  All Measurement Categories)
+    // Test Case 33 (Division All Measurement Categories)
     @Test
     void testDivision_AllMeasurementCategories() {
         assertNotNull(new Quantity<>(10.0, LengthUnit.FEET).divide(new Quantity<>(5.0, LengthUnit.FEET)));
@@ -1895,7 +1875,7 @@ class MeasurementApplicationTests {
         assertNotNull(new Quantity<>(10.0, VolumeUnit.LITRE).divide(new Quantity<>(5.0, VolumeUnit.LITRE)));
     }
 
-    // Test Case 34 (Subtraction And Division  Integration)
+    // Test Case 34 (Subtraction And Division Integration)
     @Test
     void testSubtractionAndDivision_Integration() {
         Quantity<LengthUnit> a = new Quantity<>(10.0, LengthUnit.FEET);
@@ -1904,7 +1884,7 @@ class MeasurementApplicationTests {
         assertEquals(4.0, a.subtract(b, LengthUnit.FEET).divide(c), EPSILON);
     }
 
-    // Test Case 35 (Subtraction Addition  Inverse)
+    // Test Case 35 (Subtraction Addition Inverse)
     @Test
     void testSubtractionAddition_Inverse() {
         Quantity<LengthUnit> a = new Quantity<>(10.0, LengthUnit.FEET);
@@ -1912,7 +1892,7 @@ class MeasurementApplicationTests {
         assertEquals(a.getValue(), a.add(b).subtract(b, LengthUnit.FEET).getValue(), EPSILON);
     }
 
-    // Test Case 36 (Subtraction  Immutability)
+    // Test Case 36 (Subtraction Immutability)
     @Test
     void testSubtraction_Immutability() {
         Quantity<LengthUnit> a = new Quantity<>(10.0, LengthUnit.FEET);
@@ -1922,7 +1902,7 @@ class MeasurementApplicationTests {
         assertEquals(5.0, b.getValue(), EPSILON);
     }
 
-    // Test Case 37 (Division  Immutability)
+    // Test Case 37 (Division Immutability)
     @Test
     void testDivision_Immutability() {
         Quantity<LengthUnit> a = new Quantity<>(10.0, LengthUnit.FEET);
@@ -1932,7 +1912,7 @@ class MeasurementApplicationTests {
         assertEquals(5.0, b.getValue(), EPSILON);
     }
 
-    // Test Case 38 (Subtraction  Precision And Rounding)
+    // Test Case 38 (Subtraction Precision And Rounding)
     @Test
     void testSubtraction_PrecisionAndRounding() {
         Quantity<LengthUnit> q1 = new Quantity<>(10.005, LengthUnit.FEET);
@@ -1940,13 +1920,14 @@ class MeasurementApplicationTests {
         assertEquals(5.004, q1.subtract(q2, LengthUnit.FEET).getValue(), EPSILON);
     }
 
-    // Test Case 39 (Division  Precision Handling)
+    // Test Case 39 (Division Precision Handling)
     @Test
     void testDivision_PrecisionHandling() {
         Quantity<LengthUnit> q1 = new Quantity<>(10.0, LengthUnit.FEET);
         Quantity<LengthUnit> q2 = new Quantity<>(3.0, LengthUnit.FEET);
         assertEquals(10.0 / 3.0, q1.divide(q2), EPSILON);
     }
+
     // ==========================================
     // UC13 - ARCHITECTURAL REFACTORING TESTS
     // ==========================================
@@ -2305,7 +2286,7 @@ class MeasurementApplicationTests {
         assertFalse(new Quantity<>(1.0, LengthUnit.FEET)
                 .equals(new Quantity<>(1.0, WeightUnit.KILOGRAM)));
     }
-    //UC14===================
+    // UC14===================
     // ===============================
     // UC14 TEMPERATURE MEASUREMENT TESTS
     // ===============================
@@ -2488,8 +2469,7 @@ class MeasurementApplicationTests {
 
         UnsupportedOperationException exception = assertThrows(
                 UnsupportedOperationException.class,
-                () -> q1.add(q2)
-        );
+                () -> q1.add(q2));
 
         assertTrue(exception.getMessage().contains("Temperature does not support"));
     }
@@ -2566,6 +2546,7 @@ class MeasurementApplicationTests {
         assertTrue(VolumeUnit.LITRE.supportsArithmetic());
         assertFalse(TemperatureUnit.CELSIUS.supportsArithmetic());
     }
+
     @Test
     void testTemperatureValidateOperationSupport_Throws() {
         assertThrows(UnsupportedOperationException.class,
