@@ -1,0 +1,1 @@
+import{j as r}from"./index-tp1w5e1k.js";function o({className:s="",children:t,as:a="section"}){return r.jsx(a,{className:`glass-card rounded-xl p-5 text-on-surface dark:text-slate-100 ${s}`,children:t})}export{o as C};

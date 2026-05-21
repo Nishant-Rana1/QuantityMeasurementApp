@@ -55,14 +55,13 @@ public class SecurityConfig {
 
                         // PUBLIC ENDPOINTS
                         .requestMatchers(
-                                "/",
+                                "/assets/**",
+                                "/favicon.svg",
+                                "/favicon.ico",
                                 "/error",
                                 "/api/auth/**",
                                 "/login/**",
                                 "/oauth2/**",
-
-                                // TEMPORARY FOR TESTS
-                                "/api/v1/quantities/**",
 
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
@@ -84,6 +83,15 @@ public class SecurityConfig {
                         )
                 )
 
+                // Logout Configuration
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID")
+                )
+
                 // JWT Resource Server
                 .oauth2ResourceServer(oauth2 ->
                         oauth2.jwt(Customizer.withDefaults())
@@ -99,7 +107,7 @@ public class SecurityConfig {
                 new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:3000")
+                List.of("http://localhost:3000", "http://localhost:5173", "http://127.0.0.1:5173")
         );
 
         configuration.setAllowedMethods(

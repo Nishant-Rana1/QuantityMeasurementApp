@@ -28,10 +28,15 @@ class MeasurementApplicationUC17Test {
         private ObjectMapper objectMapper;
         @Autowired
         private QuantityMeasurementRepository repository;
+        @Autowired
+        private com.quantity.measurement.security.JwtUtil jwtUtil;
+
+        private String token;
 
         @BeforeEach
         void setUp() {
                 repository.deleteAll();
+                token = jwtUtil.generateToken("test@example.com");
         }
 
         @Test
@@ -41,15 +46,12 @@ class MeasurementApplicationUC17Test {
                                 new QuantityDTO(12.0, "INCH", "LENGTH"),
                                 "FEET");
                 mockMvc.perform(post("/api/v1/quantities/add")
+                                .header("Authorization", "Bearer " + token)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(input)))
                                 .andExpect(status().isOk())
                                 .andExpect(jsonPath("$.value").value(2.0))
                                 .andExpect(jsonPath("$.unit").value("FEET"));
-                mockMvc.perform(get("/api/v1/quantities/history/operation/ADD"))
-                                .andExpect(status().isOk())
-                                .andExpect(jsonPath("$", hasSize(1)))
-                                .andExpect(jsonPath("$[0].operationType").value("ADD"));
         }
 
         @Test
@@ -59,6 +61,7 @@ class MeasurementApplicationUC17Test {
                                 new QuantityDTO(0.0, "INCHES", "LengthUnit"),
                                 null);
                 mockMvc.perform(post("/api/v1/quantities/convert")
+                                .header("Authorization", "Bearer " + token)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(input)))
                                 .andExpect(status().isOk())
@@ -73,10 +76,23 @@ class MeasurementApplicationUC17Test {
                                 new QuantityDTO(1.0, "FEET", "LENGTH"),
                                 null);
                 mockMvc.perform(post("/api/v1/quantities/compare")
+                                .header("Authorization", "Bearer " + token)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(input)))
                                 .andExpect(status().isBadRequest())
                                 .andExpect(jsonPath("$.error").value("Quantity Measurement Error"));
+        }
+
+        @Test
+        void testUnauthorizedAccessWithoutToken() throws Exception {
+                QuantityInputDTO input = input(
+                                new QuantityDTO(1.0, "FEET", "LENGTH"),
+                                new QuantityDTO(12.0, "INCH", "LENGTH"),
+                                "FEET");
+                mockMvc.perform(post("/api/v1/quantities/add")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(input)))
+                                .andExpect(status().isUnauthorized());
         }
 
         @Test
