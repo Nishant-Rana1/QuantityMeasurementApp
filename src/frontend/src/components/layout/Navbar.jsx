@@ -41,7 +41,7 @@ export default function Navbar({ onMenu }) {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:8081/oauth2/authorization/google";
+    window.location.href = `${import.meta.env.VITE_API_BASE_URL || window.location.origin}/oauth2/authorization/google`;
   };
 
   return (

@@ -90,7 +90,7 @@ export default function Topbar({ onMenu }) {
             </div>
           ) : (
             <a
-              href="http://localhost:8081/oauth2/authorization/google"
+              href={`${import.meta.env.VITE_API_BASE_URL || window.location.origin}/oauth2/authorization/google`}
               className="flex items-center gap-1.5 rounded-lg bg-primary px-3.5 py-1.5 text-xs font-black text-white shadow-sm hover:bg-primary-soft transition"
             >
               <LogIn size={15} />

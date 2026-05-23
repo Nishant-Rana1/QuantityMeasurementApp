@@ -4,8 +4,9 @@ import com.quantity.measurement.entity.Entity;
 import java.util.List;
 
 import com.quantity.measurement.entity.Entity;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface Repository {
+public interface Repository   {
 
     // Save measurement
     void save(Entity entity);
