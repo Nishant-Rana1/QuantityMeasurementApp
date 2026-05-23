@@ -15,8 +15,10 @@ export default function Welcome() {
 
   const handleGoogleLogin = () => {
     // Redirect to Spring Boot OAuth2 authorization endpoint
-    window.location.href = "http://localhost:8081/oauth2/authorization/google";
+    window.location.href = `${import.meta.env.VITE_API_BASE_URL || window.location.origin}/oauth2/authorization/google`;
   };
+
+
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
@@ -97,6 +99,8 @@ export default function Welcome() {
           </div>
 
           <div className="space-y-6 pt-2">
+
+
             {/* Continue with Google button */}
             <button
               onClick={handleGoogleLogin}
@@ -134,7 +138,7 @@ export default function Welcome() {
             </div>
 
             <div className="bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800/60 rounded-2xl p-4 text-xs text-slate-500 dark:text-slate-400 leading-relaxed text-center">
-              All credentials are handled securely via encrypted session tokens.
+              All credentials are handled securely.
             </div>
           </div>
         </div>

@@ -55,6 +55,13 @@ public class SecurityConfig {
 
                         // PUBLIC ENDPOINTS
                         .requestMatchers(
+                                "/",
+                                "/index.html",
+                                "/dashboard",
+                                "/home",
+                                "/converter",
+                                "/calculator",
+                                "/comparison",
                                 "/assets/**",
                                 "/favicon.svg",
                                 "/favicon.ico",
@@ -86,7 +93,7 @@ public class SecurityConfig {
                 // Logout Configuration
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .deleteCookies("JSESSIONID")
